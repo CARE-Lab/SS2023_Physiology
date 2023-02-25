@@ -1,3 +1,10 @@
+# Experiment private files
+data/*
+stimuli_presentation/stimuli/*
+
+# MacOS
+.DS_Store
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
