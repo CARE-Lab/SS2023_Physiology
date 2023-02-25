@@ -108,8 +108,8 @@
         <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
       </KeyboardComponent>
       <CodeComponent name="initialization">
-        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="# statement for the whole experiment&amp;#10;import numpy as np&amp;#10;import serial&amp;#10;import os&amp;#10;from datetime import datetime&amp;#10;&amp;#10;# open serial port&amp;#10;# revise the port here&amp;#10;port = serial.Serial('/dev/cu.usbserial-110', 115200)&amp;#10;port = None&amp;#10;# port: the variable defined abolve&amp;#10;# desc: the description of the event&amp;#10;def event(port, desc, timestamp):&amp;#10;    win.callOnFlip(port.write, str.encode('1'))&amp;#10;    thisExp.addData(desc, timestamp)" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="import * as np from 'numpy';&amp;#10;import * as serial from 'serial';&amp;#10;import * as os from 'os';&amp;#10;import {datetime} from 'datetime';&amp;#10;var port;&amp;#10;port = new serial.Serial(&quot;/dev/cu.usbserial-110&quot;, 115200);&amp;#10;port = null;&amp;#10;function event(port, desc, timestamp) {&amp;#10;    psychoJS.window.callOnFlip(port.write, str.encode(&quot;1&quot;));&amp;#10;    psychoJS.experiment.addData(desc, timestamp);&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
@@ -119,8 +119,8 @@
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="dt = datetime.now();&amp;#10;timestamp = datetime.timestamp(dt);&amp;#10;desc = &quot;experiment_start &quot;;&amp;#10;psychoJS.eventManager(port, desc, timestamp);&amp;#10;console.log((desc + timestamp.toString()));&amp;#10;" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="dt = datetime.now()&amp;#10;timestamp = datetime.timestamp(dt)&amp;#10;&amp;#10;desc = 'experiment_start '&amp;#10;event(port, desc, timestamp)&amp;#10;print(desc + str(timestamp))" valType="extendedCode" updates="constant" name="End Routine"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="initialization" valType="code" updates="None" name="name"/>
       </CodeComponent>
@@ -185,15 +185,15 @@
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
         <Param val="currentTrial = 1&amp;#10;correctTrial = 0&amp;#10;trialsList = data.importConditions('stim_param.xlsx')&amp;#10;totalTrial = len(trialsList)" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="currentTrial = 1;&amp;#10;correctTrial = 0;&amp;#10;trialsList = data.importConditions(&quot;stim_param.xlsx&quot;);&amp;#10;totalTrial = trialsList.length;&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="dt = datetime.now();&amp;#10;timestamp = datetime.timestamp(dt);&amp;#10;desc = ((&quot;movie&quot; + currentTrial.toString()) + &quot;_start &quot;);&amp;#10;psychoJS.eventManager(port, desc, timestamp);&amp;#10;console.log((desc + timestamp.toString()));&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="dt = datetime.now()&amp;#10;timestamp = datetime.timestamp(dt)&amp;#10;desc = 'movie' + str(currentTrial) + '_start '&amp;#10;event(port, desc, timestamp)&amp;#10;print(desc + str(timestamp))" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Auto-&gt;JS" valType="str" updates="None" name="Code Type"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="dt = datetime.now();&amp;#10;timestamp = datetime.timestamp(dt);&amp;#10;desc = ((&quot;movie&quot; + currentTrial.toString()) + &quot;_end &quot;);&amp;#10;psychoJS.eventManager(port, desc, timestamp);&amp;#10;console.log((desc + timestamp.toString()));&amp;#10;currentTrial += 1;&amp;#10;" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="dt = datetime.now()&amp;#10;timestamp = datetime.timestamp(dt)&amp;#10;desc = 'movie' + str(currentTrial) + '_end '&amp;#10;event(port, desc, timestamp)&amp;#10;print(desc + str(timestamp))&amp;#10;currentTrial += 1" valType="extendedCode" updates="constant" name="End Routine"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="trial_loader" valType="code" updates="None" name="name"/>
       </CodeComponent>
@@ -293,7 +293,7 @@
     <Routine name="start_experiment"/>
     <LoopInitiator loopType="TrialHandler" name="trials">
       <Param name="Selected rows" updates="None" val="" valType="str"/>
-      <Param name="conditions" updates="None" val="[{'movie_name': 'duck_video.mp4'}]" valType="str"/>
+      <Param name="conditions" updates="None" val="[{'movie_name': 'stimuli/duck_video.mp4'}, {'movie_name': 'stimuli/Jester.mp4'}, {'movie_name': 'stimuli/Kids_Jack_01.mp4'}, {'movie_name': 'stimuli/Kids_Jack_02.mp4'}, {'movie_name': 'stimuli/Kids_Jack_03.mp4'}, {'movie_name': 'stimuli/Kids_Jack_04.mp4'}, {'movie_name': 'stimuli/Kids_Jack_05.mp4'}, {'movie_name': 'stimuli/Kids_Jack_06.mp4'}, {'movie_name': 'stimuli/Kids_Jack_07.mp4'}, {'movie_name': 'stimuli/Kids_Jack_08.mp4'}, {'movie_name': 'stimuli/Kids_Jack_09.mp4'}, {'movie_name': 'stimuli/Kids_Jack_10.mp4'}, {'movie_name': 'stimuli/Kids_Jack_11.mp4'}, {'movie_name': 'stimuli/Kids_Jack_12.mp4'}, {'movie_name': 'stimuli/Kids_Jack_13.mp4'}, {'movie_name': 'stimuli/Kids_Jack_14.mp4'}, {'movie_name': 'stimuli/Kids_Jack_15.mp4'}, {'movie_name': 'stimuli/Kids_Jack_16.mp4'}, {'movie_name': 'stimuli/Kids_Jack_17.mp4'}, {'movie_name': 'stimuli/Kids_Jack_18.mp4'}, {'movie_name': 'stimuli/Kids_Jack_19.mp4'}, {'movie_name': 'stimuli/Kids_Jack_20.mp4'}, {'movie_name': 'stimuli/Kids_Jack_21.mp4'}, {'movie_name': 'stimuli/Kids_Jack_22.mp4'}, {'movie_name': 'stimuli/Kids_Jack_23.mp4'}, {'movie_name': 'stimuli/Kids_Jack_24.mp4'}, {'movie_name': 'stimuli/Kids_Jack_25.mp4'}, {'movie_name': 'stimuli/Kids_Jack_26.mp4'}, {'movie_name': 'stimuli/Kids_Jack_27.mp4'}, {'movie_name': 'stimuli/Kids_Jack_28.mp4'}, {'movie_name': 'stimuli/Kids_Jack_29.mp4'}, {'movie_name': 'stimuli/P01.mp4'}, {'movie_name': 'stimuli/P02s.mp4'}, {'movie_name': 'stimuli/P03.mp4'}, {'movie_name': 'stimuli/P04.mp4'}, {'movie_name': 'stimuli/P05.mp4'}, {'movie_name': 'stimuli/P06.mp4'}, {'movie_name': 'stimuli/P07s.mp4'}, {'movie_name': 'stimuli/P08.mp4'}, {'movie_name': 'stimuli/P08.mpg'}, {'movie_name': 'stimuli/P09.mp4'}]" valType="str"/>
       <Param name="conditionsFile" updates="None" val="stim_param.xlsx" valType="file"/>
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
       <Param name="isTrials" updates="None" val="True" valType="bool"/>

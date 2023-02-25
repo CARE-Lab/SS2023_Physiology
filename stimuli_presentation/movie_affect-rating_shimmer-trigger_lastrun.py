@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2022.2.4),
-    on Sat Feb 25 14:43:15 2023
+    on Sat Feb 25 22:03:03 2023
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -28,6 +28,22 @@ import sys  # to get file system encoding
 import psychopy.iohub as io
 from psychopy.hardware import keyboard
 
+# Run 'Before Experiment' code from initialization
+# statement for the whole experiment
+import numpy as np
+import serial
+import os
+from datetime import datetime
+
+# open serial port
+# revise the port here
+# port = serial.Serial('/dev/cu.usbserial-110', 115200)
+port = None
+# port: the variable defined abolve
+# desc: the description of the event
+def event(port, desc, timestamp):
+    # win.callOnFlip(port.write, str.encode('1'))
+    thisExp.addData(desc, timestamp)
 
 
 # Ensure that relative paths start from the same directory as this script
@@ -54,7 +70,7 @@ filename = _thisDir + os.sep + u'data/%s_%s_%s' % (expInfo['participant'], expNa
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
-    originPath='/Users/monica/Dropbox/NAIST/Teaching/Spring Seminar/2023/SS2023_Physiology/stimuli_presentation/movie_affect-rating_shimmer-trigger_lastrun.py',
+    originPath='/Users/celia/Code/SS2023_Physiology/stimuli_presentation/movie_affect-rating_shimmer-trigger_lastrun.py',
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -127,13 +143,15 @@ correctTrial = 0
 trialsList = data.importConditions('stim_param.xlsx')
 totalTrial = len(trialsList)
 
-# --- Initialize components for Routine "fixation" ---
-fixation_1 = visual.ShapeStim(
-    win=win, name='fixation_1', vertices='cross',
-    size=(0.01, 0.01),
-    ori=0.0, pos=(0, 0), anchor='center',
-    lineWidth=1.0,     colorSpace='rgb',  lineColor='white', fillColor='white',
-    opacity=1.0, depth=0.0, interpolate=True)
+# --- Initialize components for Routine "wait" ---
+wait_text = visual.TextStim(win=win, name='wait_text',
+    text='Press space to continue',
+    font='Open Sans',
+    pos=(0, 0), height=0.05, wrapWidth=None, ori=0.0, 
+    color='white', colorSpace='rgb', opacity=1.0, 
+    languageStyle='LTR',
+    depth=0.0);
+wait_key = keyboard.Keyboard()
 
 # --- Initialize components for Routine "thanks" ---
 text = visual.TextStim(win=win, name='text',
@@ -243,6 +261,13 @@ thisExp.addData('key_start_experiment.keys',key_start_experiment.keys)
 if key_start_experiment.keys != None:  # we had a response
     thisExp.addData('key_start_experiment.rt', key_start_experiment.rt)
 thisExp.nextEntry()
+# Run 'End Routine' code from initialization
+dt = datetime.now()
+timestamp = datetime.timestamp(dt)
+
+desc = 'experiment_start '
+event(port, desc, timestamp)
+print(desc + str(timestamp))
 # the Routine "start_experiment" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
 
@@ -345,6 +370,12 @@ for thisTrial in trials:
     routineForceEnded = False
     # update component parameters for each repeat
     movie.setMovie(movie_name)
+    # Run 'Begin Routine' code from trial_loader
+    dt = datetime.now()
+    timestamp = datetime.timestamp(dt)
+    desc = 'movie' + str(currentTrial) + '_start '
+    event(port, desc, timestamp)
+    print(desc + str(timestamp))
     # keep track of which components have finished
     trial_movieComponents = [movie]
     for thisComponent in trial_movieComponents:
@@ -403,16 +434,26 @@ for thisTrial in trials:
         if hasattr(thisComponent, "setAutoDraw"):
             thisComponent.setAutoDraw(False)
     movie.stop()
+    # Run 'End Routine' code from trial_loader
+    dt = datetime.now()
+    timestamp = datetime.timestamp(dt)
+    desc = 'movie' + str(currentTrial) + '_end '
+    event(port, desc, timestamp)
+    print(desc + str(timestamp))
+    currentTrial += 1
     # the Routine "trial_movie" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset()
     
-    # --- Prepare to start Routine "fixation" ---
+    # --- Prepare to start Routine "wait" ---
     continueRoutine = True
     routineForceEnded = False
     # update component parameters for each repeat
+    wait_key.keys = []
+    wait_key.rt = []
+    _wait_key_allKeys = []
     # keep track of which components have finished
-    fixationComponents = [fixation_1]
-    for thisComponent in fixationComponents:
+    waitComponents = [wait_text, wait_key]
+    for thisComponent in waitComponents:
         thisComponent.tStart = None
         thisComponent.tStop = None
         thisComponent.tStartRefresh = None
@@ -424,8 +465,8 @@ for thisTrial in trials:
     _timeToFirstFrame = win.getFutureFlipTime(clock="now")
     frameN = -1
     
-    # --- Run Routine "fixation" ---
-    while continueRoutine and routineTimer.getTime() < 1.0:
+    # --- Run Routine "wait" ---
+    while continueRoutine:
         # get current time
         t = routineTimer.getTime()
         tThisFlip = win.getFutureFlipTime(clock=routineTimer)
@@ -433,25 +474,40 @@ for thisTrial in trials:
         frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
         # update/draw components on each frame
         
-        # *fixation_1* updates
-        if fixation_1.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # *wait_text* updates
+        if wait_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
             # keep track of start time/frame for later
-            fixation_1.frameNStart = frameN  # exact frame index
-            fixation_1.tStart = t  # local t and not account for scr refresh
-            fixation_1.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(fixation_1, 'tStartRefresh')  # time at next scr refresh
+            wait_text.frameNStart = frameN  # exact frame index
+            wait_text.tStart = t  # local t and not account for scr refresh
+            wait_text.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(wait_text, 'tStartRefresh')  # time at next scr refresh
             # add timestamp to datafile
-            thisExp.timestampOnFlip(win, 'fixation_1.started')
-            fixation_1.setAutoDraw(True)
-        if fixation_1.status == STARTED:
-            # is it time to stop? (based on global clock, using actual start)
-            if tThisFlipGlobal > fixation_1.tStartRefresh + 1.0-frameTolerance:
-                # keep track of stop time/frame for later
-                fixation_1.tStop = t  # not accounting for scr refresh
-                fixation_1.frameNStop = frameN  # exact frame index
-                # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'fixation_1.stopped')
-                fixation_1.setAutoDraw(False)
+            thisExp.timestampOnFlip(win, 'wait_text.started')
+            wait_text.setAutoDraw(True)
+        
+        # *wait_key* updates
+        waitOnFlip = False
+        if wait_key.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            wait_key.frameNStart = frameN  # exact frame index
+            wait_key.tStart = t  # local t and not account for scr refresh
+            wait_key.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(wait_key, 'tStartRefresh')  # time at next scr refresh
+            # add timestamp to datafile
+            thisExp.timestampOnFlip(win, 'wait_key.started')
+            wait_key.status = STARTED
+            # keyboard checking is just starting
+            waitOnFlip = True
+            win.callOnFlip(wait_key.clock.reset)  # t=0 on next screen flip
+            win.callOnFlip(wait_key.clearEvents, eventType='keyboard')  # clear events on next screen flip
+        if wait_key.status == STARTED and not waitOnFlip:
+            theseKeys = wait_key.getKeys(keyList=['space'], waitRelease=False)
+            _wait_key_allKeys.extend(theseKeys)
+            if len(_wait_key_allKeys):
+                wait_key.keys = _wait_key_allKeys[-1].name  # just the last key pressed
+                wait_key.rt = _wait_key_allKeys[-1].rt
+                # a response ends the routine
+                continueRoutine = False
         
         # check for quit (typically the Esc key)
         if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
@@ -462,7 +518,7 @@ for thisTrial in trials:
             routineForceEnded = True
             break
         continueRoutine = False  # will revert to True if at least one component still running
-        for thisComponent in fixationComponents:
+        for thisComponent in waitComponents:
             if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                 continueRoutine = True
                 break  # at least one component has not yet finished
@@ -471,15 +527,18 @@ for thisTrial in trials:
         if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
             win.flip()
     
-    # --- Ending Routine "fixation" ---
-    for thisComponent in fixationComponents:
+    # --- Ending Routine "wait" ---
+    for thisComponent in waitComponents:
         if hasattr(thisComponent, "setAutoDraw"):
             thisComponent.setAutoDraw(False)
-    # using non-slip timing so subtract the expected duration of this Routine (unless ended on request)
-    if routineForceEnded:
-        routineTimer.reset()
-    else:
-        routineTimer.addTime(-1.000000)
+    # check responses
+    if wait_key.keys in ['', [], None]:  # No response was made
+        wait_key.keys = None
+    trials.addData('wait_key.keys',wait_key.keys)
+    if wait_key.keys != None:  # we had a response
+        trials.addData('wait_key.rt', wait_key.rt)
+    # the Routine "wait" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset()
     thisExp.nextEntry()
     
 # completed 1.0 repeats of 'trials'
