@@ -1,6 +1,7 @@
 # Experiment private files
 data/*
 stimuli_presentation/stimuli/*
+stimuli_presentation/movie_affect-rating_shimmer-trigger_lastrun.py
 
 # MacOS
 .DS_Store
