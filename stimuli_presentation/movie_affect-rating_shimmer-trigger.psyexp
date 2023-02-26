@@ -108,8 +108,8 @@
         <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
       </KeyboardComponent>
       <CodeComponent name="initialization">
-        <Param val="# statement for the whole experiment&amp;#10;import numpy as np&amp;#10;import serial&amp;#10;import os&amp;#10;from datetime import datetime&amp;#10;&amp;#10;# open serial port&amp;#10;# revise the port here&amp;#10;port = serial.Serial('/dev/cu.usbserial-110', 115200)&amp;#10;port = None&amp;#10;# port: the variable defined abolve&amp;#10;# desc: the description of the event&amp;#10;def event(port, desc, timestamp):&amp;#10;    win.callOnFlip(port.write, str.encode('1'))&amp;#10;    thisExp.addData(desc, timestamp)" valType="extendedCode" updates="constant" name="Before Experiment"/>
-        <Param val="import * as np from 'numpy';&amp;#10;import * as serial from 'serial';&amp;#10;import * as os from 'os';&amp;#10;import {datetime} from 'datetime';&amp;#10;var port;&amp;#10;port = new serial.Serial(&quot;/dev/cu.usbserial-110&quot;, 115200);&amp;#10;port = null;&amp;#10;function event(port, desc, timestamp) {&amp;#10;    psychoJS.window.callOnFlip(port.write, str.encode(&quot;1&quot;));&amp;#10;    psychoJS.experiment.addData(desc, timestamp);&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="# statement for the whole experiment&amp;#10;import numpy as np&amp;#10;import serial&amp;#10;import os&amp;#10;from datetime import datetime&amp;#10;&amp;#10;# open serial port&amp;#10;# revise the port here&amp;#10;port = serial.Serial('/dev/cu.usbserial-1110', 115200)&amp;#10;#port = None&amp;#10;# port: the variable defined abolve&amp;#10;# desc: the description of the event&amp;#10;def event(port, desc, timestamp):&amp;#10;    win.callOnFlip(port.write, str.encode('1'))&amp;#10;    thisExp.addData(desc, timestamp)" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="import * as np from 'numpy';&amp;#10;import * as serial from 'serial';&amp;#10;import * as os from 'os';&amp;#10;import {datetime} from 'datetime';&amp;#10;var port;&amp;#10;port = new serial.Serial(&quot;/dev/cu.usbserial-1110&quot;, 115200);&amp;#10;function event(port, desc, timestamp) {&amp;#10;    psychoJS.window.callOnFlip(port.write, str.encode(&quot;1&quot;));&amp;#10;    psychoJS.experiment.addData(desc, timestamp);&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
@@ -160,7 +160,7 @@
         <Param val="center" valType="str" updates="constant" name="anchor"/>
         <Param val="ffpyplayer" valType="str" updates="None" name="backend"/>
         <Param val="1" valType="num" updates="constant" name="contrast"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="True" valType="bool" updates="None" name="disabled"/>
         <Param val="" valType="code" updates="None" name="durationEstim"/>
         <Param val="False" valType="bool" updates="constant" name="forceEndRoutine"/>
         <Param val="False" valType="bool" updates="None" name="loop"/>
