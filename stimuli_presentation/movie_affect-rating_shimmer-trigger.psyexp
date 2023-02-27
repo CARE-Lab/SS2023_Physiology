@@ -108,8 +108,8 @@
         <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
       </KeyboardComponent>
       <CodeComponent name="initialization">
-        <Param val="# statement for the whole experiment&amp;#10;import numpy as np&amp;#10;import serial&amp;#10;import os&amp;#10;from datetime import datetime&amp;#10;&amp;#10;# open serial port&amp;#10;# revise the port here&amp;#10;port = serial.Serial('/dev/cu.usbserial-1120', 115200)&amp;#10;#port = None&amp;#10;# port: the variable defined abolve&amp;#10;# desc: the description of the event&amp;#10;def event(port, desc, timestamp):&amp;#10;    win.callOnFlip(port.write, str.encode('1'))&amp;#10;    thisExp.addData(desc, timestamp)" valType="extendedCode" updates="constant" name="Before Experiment"/>
-        <Param val="import * as np from 'numpy';&amp;#10;import * as serial from 'serial';&amp;#10;import * as os from 'os';&amp;#10;import {datetime} from 'datetime';&amp;#10;var port;&amp;#10;port = new serial.Serial(&quot;/dev/cu.usbserial-1120&quot;, 115200);&amp;#10;function event(port, desc, timestamp) {&amp;#10;    psychoJS.window.callOnFlip(port.write, str.encode(&quot;1&quot;));&amp;#10;    psychoJS.experiment.addData(desc, timestamp);&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="# statement for the whole experiment&amp;#10;import numpy as np&amp;#10;import serial&amp;#10;import os&amp;#10;from datetime import datetime&amp;#10;&amp;#10;# open serial port&amp;#10;# revise the port here&amp;#10;# port = serial.Serial('/dev/cu.usbserial-2120', 115200)&amp;#10;port = None&amp;#10;# port: the variable defined abolve&amp;#10;# desc: the description of the event&amp;#10;def event(port, desc, timestamp):&amp;#10;#    win.callOnFlip(port.write, str.encode('1'))&amp;#10;    thisExp.addData(desc, timestamp)" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="import * as np from 'numpy';&amp;#10;import * as serial from 'serial';&amp;#10;import * as os from 'os';&amp;#10;import {datetime} from 'datetime';&amp;#10;var port;&amp;#10;port = null;&amp;#10;function event(port, desc, timestamp) {&amp;#10;    psychoJS.experiment.addData(desc, timestamp);&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
@@ -325,7 +325,7 @@
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
         <Param val="0.0" valType="code" updates="None" name="startVal"/>
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="1.0" valType="code" updates="constant" name="stopVal"/>
+        <Param val="5.0" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
         <Param val="Smile!" valType="str" updates="constant" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
@@ -348,9 +348,9 @@
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
-        <Param val="1.0" valType="code" updates="None" name="startVal"/>
+        <Param val="5.0" valType="code" updates="None" name="startVal"/>
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="1.0" valType="code" updates="constant" name="stopVal"/>
+        <Param val="5.0" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
         <Param val="Relax your face" valType="str" updates="constant" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
@@ -373,9 +373,9 @@
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
-        <Param val="2.0" valType="code" updates="None" name="startVal"/>
+        <Param val="10.0" valType="code" updates="None" name="startVal"/>
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="1.0" valType="code" updates="constant" name="stopVal"/>
+        <Param val="5.0" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
         <Param val="Frown!" valType="str" updates="constant" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
@@ -398,9 +398,9 @@
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
-        <Param val="3.0" valType="code" updates="None" name="startVal"/>
+        <Param val="15.0" valType="code" updates="None" name="startVal"/>
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="1.0" valType="code" updates="constant" name="stopVal"/>
+        <Param val="5.0" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
         <Param val="Relax your face" valType="str" updates="constant" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
@@ -423,7 +423,7 @@
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
-        <Param val="4.0" valType="code" updates="None" name="startVal"/>
+        <Param val="20.0" valType="code" updates="None" name="startVal"/>
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="60.0" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
